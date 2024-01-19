@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            box-sizing: border-box;
+            position: relative;
+            border: 1px solid red;
+        }
+
+        .page {
+            overflow: hidden;
+            min-height: 100vh;
+        }
+
+        .swiper-box {
+            width: 75%;
+            height: 120vh;
+            position: absolute;
+            bottom: -45%;
+            left: 50%;
+            transform: translateX(-50%);
+
+        }
+
+        .swiper {
+            position: absolute;
+            border-radius: 100%;
+            width: 250px;
+            height: 250px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 1s linear;
+            text-align: center;
+        }
+
+        .swiper::before {
+            content: '';
+            position: absolute;
+            top: 0%;
+            left: 0%;
+            width: 100%;
+            height: 100%;
+            /* background-color: #ccc; */
+            pointer-events: none;
+        }
+
+        .swiper.active::before {
+            content: '';
+            background-color: transparent;
+        }
+
+        .slider01 {
+            top: 0%;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .slider02 {
+            top: 50%;
+            right: 0%;
+            transform: translateY(-50%);
+        }
+
+        .slider03 {
+            bottom: 0%;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .slider04 {
+            top: 50%;
+            left: 0%;
+            transform: translateY(-50%);
+        }
+
+        .pagination-box {
+            position: absolute;
+            top: 50%;
+            right: 3%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-around;
+        }
+
+        .bot {
+            width: 15px;
+            height: 15px;
+            border-radius: 100%;
+            cursor: pointer;
+            margin: 20% 0%;
+            background-color: rgb(230, 137, 16);
+        }
+
+        .bot.active {
+            background-color: #000;
+        }
+    </style>
+</head>
+
+<body>
+    <section class="page">
+        <div class="swiper-box">
+            <div class="swiper slider01">01</div>
+            <div class="swiper slider02">02</div>
+            <div class="swiper slider03">03</div>
+            <div class="swiper slider04">04</div>
+        </div>
+        <div class="pagination-box">
+            <div class="bot bt1 active"></div>
+            <div class="bot bt2"></div>
+            <div class="bot bt3"></div>
+            <div class="bot bt4"></div>
+        </div>
+    </section>
+</body>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js'
+    integrity='sha512-+k1pnlgt4F1H8L7t3z95o3/KO+o78INEcXTbnoJQ/F2VqDVhWoaiVml/OEHv9HsVgxUaVW+IbiZPUJQfF/YxZw=='
+    crossorigin='anonymous'></script>
+<script>
+    $(function () {
+        let bot = document.querySelectorAll(".bot");
+        bot.forEach(function (item, index) {
+            item.addEventListener('click', function () {
+            $(".bot").removeClass("active");
+            $(this).addClass("active");
+            if ($(".bt1").hasClass("active")) {
+                // alert("AAA")
+                $(".slider01").css({
+                    top: "0%",
+                    left: "50%",
+                    transform: "translate(-50%,0%)"
+                });
+                $(".slider02").css({
+                    top: "50%",
+                    left: "unset",
+                    right: "0%",
+                    transform: "translate(0%,-50%)"
+                });
+                $(".slider03").css({
+                    top:"unset",
+                    bottom: "0%",
+                    left: "50%",
+                    right:"unset",
+                    transform: "translate(-50%, 0%)"
+                });
+                $(".slider04").css({
+                    top: "50%",
+                    bottom:"unset",
+                    left: "0%",
+                    transform: "translate(0%,-50%)"
+                });
+                $(".swiper").removeClass("active");
+                $(".slider01").addClass("active");
+            }
+            if ($(".bt2").hasClass("active")) {
+                // alert("AAA")
+                $(".slider04").css({
+                    top: "0%",
+                    left: "50%",
+                    transform: "translate(-50%,0%)"
+                });
+                $(".slider01").css({
+                    top: "50%",
+                    left: "unset",
+                    right: "0%",
+                    transform: "translate(0%,-50%)"
+                });
+                $(".slider02").css({
+                    top:"unset",
+                    bottom: "0%",
+                    left: "50%",
+                    right:"unset",
+                    transform: "translate(-50%, 0%)"
+                });
+                $(".slider03").css({
+                    top: "50%",
+                    bottom:"unset",
+                    left: "0%",
+                    transform: "translate(0%,-50%)"
+                });
+                $(".swiper").removeClass("active");
+                $(".slider04").addClass("active");
+            }
+            if ($(".bt3").hasClass("active")) {
+                // alert("AAA")
+                $(".slider03").css({
+                    top: "0%",
+                    left: "50%",
+                    transform: "translate(-50%,0%)"
+                });
+                $(".slider04").css({
+                    top: "50%",
+                    left: "unset",
+                    right: "0%",
+                    transform: "translate(0%,-50%)"
+                });
+                $(".slider01").css({
+                    top:"unset",
+                    bottom: "0%",
+                    left: "50%",
+                    right:"unset",
+                    transform: "translate(-50%, 0%)"
+                });
+                $(".slider02").css({
+                    top: "50%",
+                    bottom:"unset",
+                    left: "0%",
+                    transform: "translate(0%,-50%)"
+                });
+                $(".swiper").removeClass("active");
+                $(".slider03").addClass("active");
+            }
+            if ($(".bt4").hasClass("active")) {
+                // alert("AAA")
+                $(".slider02").css({
+                    top: "0%",
+                    left: "50%",
+                    transform: "translate(-50%,0%)"
+                });
+                $(".slider03").css({
+                    top: "50%",
+                    left: "unset",
+                    right: "0%",
+                    transform: "translate(0%,-50%)"
+                });
+                $(".slider04").css({
+                    top:"unset",
+                    bottom: "0%",
+                    left: "50%",
+                    right:"unset",
+                    transform: "translate(-50%, 0%)"
+                });
+                $(".slider01").css({
+                    top: "50%",
+                    bottom:"unset",
+                    left: "0%",
+                    transform: "translate(0%,-50%)"
+                });
+                $(".swiper").removeClass("active");
+                $(".slider02").addClass("active");
+            }
+            })
+        });
+    })
+</script>
+
+</html>
