@@ -12,33 +12,90 @@
             list-style: none;
             box-sizing: border-box;
             position: relative;
-            border: 1px solid red;
+            /* border: 1px solid red; */
         }
 
         .page {
             overflow: hidden;
-            min-height: 100vh;
+            height: 100vh;
+        }
+
+        .page01 {
+            background-color: #F7CFA6;
+        }
+
+        .pic-box {
+            width: 100%;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        .pic-box .progress {
+            position: absolute;
+            top: 0%;
+            left: 0%;
+            width: 25%;
+            height: 100%;
+            z-index: 2;
+            background-image: url(./images/img/cat-feet.svg);
+            background-repeat: repeat-x;
+            /* background-size: contain; */
+            background-position: center left;
+            /* transition: width 1s ease-in-out; */
+        }
+
+        .pic-box .pic_item {
+            width: calc(100% / 4);
+            opacity: .2;
+        }
+
+        .pic-box .pic_item.active {
+            opacity: 1;
+        }
+
+        .pic_item .innerImg {
+            width: 100%;
+            padding-top: 60%;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
         }
 
         .swiper-box {
-            width: 75%;
+            width: 85%;
             height: 120vh;
             position: absolute;
             bottom: -45%;
             left: 50%;
             transform: translateX(-50%);
-
+            background-image: url(./images/img/slide_bg.svg);
+            background-size: 75%;
+            background-repeat: no-repeat;
+            background-position: center 30%;
         }
 
         .swiper {
             position: absolute;
             border-radius: 100%;
-            width: 250px;
-            height: 250px;
+            width: 300px;
+            height: 300px;
             overflow: hidden;
             cursor: pointer;
             transition: all 1s linear;
             text-align: center;
+            background-color: #fff;
+        }
+
+        .swiper .innerImg {
+            position: absolute;
+            top: 0%;
+            left: 0%;
+            width: 100%;
+            height: 100%;
+            background-repeat: no-repeat;
+            background-size: 72%;
+            background-position: 50px 69px;
         }
 
         .swiper::before {
@@ -48,8 +105,10 @@
             left: 0%;
             width: 100%;
             height: 100%;
-            /* background-color: #ccc; */
+            background-color: #FFB865;
+            mix-blend-mode: multiply;
             pointer-events: none;
+            z-index: 2;
         }
 
         .swiper.active::before {
@@ -108,12 +167,37 @@
 </head>
 
 <body>
-    <section class="page">
+    <section class="page page01">
+        <div class="pic-box">
+            <div class="progress">
+                <!-- <div class="innerImg"></div> -->
+            </div>
+            <div class="pic_item item01 active">
+                <div class="innerImg" style="background-image: url(./images/img/pic_item01.png);"></div>
+            </div>
+            <div class="pic_item item02">
+                <div class="innerImg" style="background-image: url(./images/img/pic_item02.png);"></div>
+            </div>
+            <div class="pic_item item03">
+                <div class="innerImg" style="background-image: url(./images/img/pic_item03.png);"></div>
+            </div>
+            <div class="pic_item item04">
+                <div class="innerImg" style="background-image: url(./images/img/pic_item04.png);"></div>
+            </div>
+        </div>
         <div class="swiper-box">
-            <div class="swiper slider01">01</div>
-            <div class="swiper slider02">02</div>
-            <div class="swiper slider03">03</div>
-            <div class="swiper slider04">04</div>
+            <div class="swiper slider01 active">
+                <div class="innerImg" style="background-image: url(./images/img/swiper_icon01.svg);"></div>
+            </div>
+            <div class="swiper slider02">
+                <div class="innerImg" style="background-image: url(./images/img/swiper_icon04.svg);"></div>
+            </div>
+            <div class="swiper slider03">
+                <div class="innerImg" style="background-image: url(./images/img/swiper_icon03.svg);"></div>
+            </div>
+            <div class="swiper slider04">
+                <div class="innerImg" style="background-image: url(./images/img/swiper_icon02.svg);"></div>
+            </div>
         </div>
         <div class="pagination-box">
             <div class="bot bt1 active"></div>
@@ -131,124 +215,144 @@
         let bot = document.querySelectorAll(".bot");
         bot.forEach(function (item, index) {
             item.addEventListener('click', function () {
-            $(".bot").removeClass("active");
-            $(this).addClass("active");
-            if ($(".bt1").hasClass("active")) {
-                // alert("AAA")
-                $(".slider01").css({
-                    top: "0%",
-                    left: "50%",
-                    transform: "translate(-50%,0%)"
-                });
-                $(".slider02").css({
-                    top: "50%",
-                    left: "unset",
-                    right: "0%",
-                    transform: "translate(0%,-50%)"
-                });
-                $(".slider03").css({
-                    top:"unset",
-                    bottom: "0%",
-                    left: "50%",
-                    right:"unset",
-                    transform: "translate(-50%, 0%)"
-                });
-                $(".slider04").css({
-                    top: "50%",
-                    bottom:"unset",
-                    left: "0%",
-                    transform: "translate(0%,-50%)"
-                });
-                $(".swiper").removeClass("active");
-                $(".slider01").addClass("active");
-            }
-            if ($(".bt2").hasClass("active")) {
-                // alert("AAA")
-                $(".slider04").css({
-                    top: "0%",
-                    left: "50%",
-                    transform: "translate(-50%,0%)"
-                });
-                $(".slider01").css({
-                    top: "50%",
-                    left: "unset",
-                    right: "0%",
-                    transform: "translate(0%,-50%)"
-                });
-                $(".slider02").css({
-                    top:"unset",
-                    bottom: "0%",
-                    left: "50%",
-                    right:"unset",
-                    transform: "translate(-50%, 0%)"
-                });
-                $(".slider03").css({
-                    top: "50%",
-                    bottom:"unset",
-                    left: "0%",
-                    transform: "translate(0%,-50%)"
-                });
-                $(".swiper").removeClass("active");
-                $(".slider04").addClass("active");
-            }
-            if ($(".bt3").hasClass("active")) {
-                // alert("AAA")
-                $(".slider03").css({
-                    top: "0%",
-                    left: "50%",
-                    transform: "translate(-50%,0%)"
-                });
-                $(".slider04").css({
-                    top: "50%",
-                    left: "unset",
-                    right: "0%",
-                    transform: "translate(0%,-50%)"
-                });
-                $(".slider01").css({
-                    top:"unset",
-                    bottom: "0%",
-                    left: "50%",
-                    right:"unset",
-                    transform: "translate(-50%, 0%)"
-                });
-                $(".slider02").css({
-                    top: "50%",
-                    bottom:"unset",
-                    left: "0%",
-                    transform: "translate(0%,-50%)"
-                });
-                $(".swiper").removeClass("active");
-                $(".slider03").addClass("active");
-            }
-            if ($(".bt4").hasClass("active")) {
-                // alert("AAA")
-                $(".slider02").css({
-                    top: "0%",
-                    left: "50%",
-                    transform: "translate(-50%,0%)"
-                });
-                $(".slider03").css({
-                    top: "50%",
-                    left: "unset",
-                    right: "0%",
-                    transform: "translate(0%,-50%)"
-                });
-                $(".slider04").css({
-                    top:"unset",
-                    bottom: "0%",
-                    left: "50%",
-                    right:"unset",
-                    transform: "translate(-50%, 0%)"
-                });
-                $(".slider01").css({
-                    top: "50%",
-                    bottom:"unset",
-                    left: "0%",
-                    transform: "translate(0%,-50%)"
-                });
-                $(".swiper").removeClass("active");
-                $(".slider02").addClass("active");
-            }
+                $(".bot").removeClass("active");
+                $(this).addClass("active");
+                if ($(".bt1").hasClass("active")) {
+                    // alert("AAA")
+                    $(".slider01").css({
+                        top: "0%",
+                        left: "50%",
+                        transform: "translate(-50%,0%)"
+                    });
+                    $(".slider02").css({
+                        top: "50%",
+                        left: "unset",
+                        right: "0%",
+                        transform: "translate(0%,-50%)"
+                    });
+                    $(".slider03").css({
+                        top: "unset",
+                        bottom: "0%",
+                        left: "50%",
+                        right: "unset",
+                        transform: "translate(-50%, 0%)"
+                    });
+                    $(".slider04").css({
+                        top: "50%",
+                        bottom: "unset",
+                        left: "0%",
+                        transform: "translate(0%,-50%)"
+                    });
+                    $(".pic-box .progress").css({
+                        width: "25%"
+                    });
+                    $(".swiper").removeClass("active");
+                    $(".slider01").addClass("active");
+                    $(".pic_item").removeClass("active");
+                    $(".item01").addClass("active");
+                }
+                if ($(".bt2").hasClass("active")) {
+                    // alert("AAA")
+                    $(".slider04").css({
+                        top: "0%",
+                        left: "50%",
+                        transform: "translate(-50%,0%)"
+                    });
+                    $(".slider01").css({
+                        top: "50%",
+                        left: "unset",
+                        right: "0%",
+                        transform: "translate(0%,-50%)"
+                    });
+                    $(".slider02").css({
+                        top: "unset",
+                        bottom: "0%",
+                        left: "50%",
+                        right: "unset",
+                        transform: "translate(-50%, 0%)"
+                    });
+                    $(".slider03").css({
+                        top: "50%",
+                        bottom: "unset",
+                        left: "0%",
+                        transform: "translate(0%,-50%)"
+                    });
+                    $(".pic-box .progress").css({
+                        width: "50%"
+                    });
+                    $(".swiper").removeClass("active");
+                    $(".slider04").addClass("active");
+                    $(".pic_item").removeClass("active");
+                    $(".item02").addClass("active");
+                }
+                if ($(".bt3").hasClass("active")) {
+                    // alert("AAA")
+                    $(".slider03").css({
+                        top: "0%",
+                        left: "50%",
+                        transform: "translate(-50%,0%)"
+                    });
+                    $(".slider04").css({
+                        top: "50%",
+                        left: "unset",
+                        right: "0%",
+                        transform: "translate(0%,-50%)"
+                    });
+                    $(".slider01").css({
+                        top: "unset",
+                        bottom: "0%",
+                        left: "50%",
+                        right: "unset",
+                        transform: "translate(-50%, 0%)"
+                    });
+                    $(".slider02").css({
+                        top: "50%",
+                        bottom: "unset",
+                        left: "0%",
+                        transform: "translate(0%,-50%)"
+                    });
+                    $(".pic-box .progress").css({
+                        width: "75%"
+                    });
+                    $(".swiper").removeClass("active");
+                    $(".slider03").addClass("active");
+                    $(".pic_item").removeClass("active");
+                    $(".item03").addClass("active");
+                }
+                if ($(".bt4").hasClass("active")) {
+                    // alert("AAA")
+                    $(".slider02").css({
+                        top: "0%",
+                        left: "50%",
+                        transform: "translate(-50%,0%)"
+                    });
+                    $(".slider03").css({
+                        top: "50%",
+                        left: "unset",
+                        right: "0%",
+                        transform: "translate(0%,-50%)"
+                    });
+                    $(".slider04").css({
+                        top: "unset",
+                        bottom: "0%",
+                        left: "50%",
+                        right: "unset",
+                        transform: "translate(-50%, 0%)"
+                    });
+                    $(".slider01").css({
+                        top: "50%",
+                        bottom: "unset",
+                        left: "0%",
+                        transform: "translate(0%,-50%)"
+                    });
+                    $(".pic-box .progress").css({
+                        width: "100%"
+                    });
+                    $(".swiper").removeClass("active");
+                    $(".slider02").addClass("active");
+                    $(".pic_item").removeClass("active");
+                    $(".item04").addClass("active");
+                }
             })
         });
     })
